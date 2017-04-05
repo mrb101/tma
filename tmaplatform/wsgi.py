@@ -16,3 +16,5 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tmaplatform.settings")
 application = DjangoWhiteNoise(application)
 
 application = get_wsgi_application()
+
+application = DjangoWhiteNoise(application)
