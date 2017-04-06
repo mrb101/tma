@@ -7,11 +7,8 @@ from .models import (
     Contact,
     Services,
     Clients,
-    Branding,
-    Copy,
+    Base,
     Team,
-    Footer,
-    Header,
     Slider,
     MainBody,
     Testimony,
@@ -23,11 +20,8 @@ admin.site.register(About)
 admin.site.register(Contact)
 admin.site.register(Services)
 admin.site.register(Clients)
-admin.site.register(Branding)
-admin.site.register(Copy)
+admin.site.register(Base)
 admin.site.register(Team)
-admin.site.register(Footer)
-admin.site.register(Header)
 admin.site.register(Slider)
 admin.site.register(MainBody)
 admin.site.register(Testimony)

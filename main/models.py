@@ -33,16 +33,32 @@ class Services(TimeStampModel):
 class Clients(TimeStampModel):
     link = models.CharField(max_length=255, null=False, blank=False)
     client_logo = models.ImageField(upload_to='clients', null=False, blank=False)
+    client_img = ImageSpecField(source='client_logo',
+                              processors=[Thumbnail(165, 127.14)],
+                              options={'quality': 100})
 
 
-class Branding(TimeStampModel):
+class Base(TimeStampModel):
     logo = models.ImageField(upload_to='logo', null=False, blank=False)
     logo_img = ImageSpecField(source='logo',
                               processors=[Thumbnail(400, 40)],
                               options={'quality': 100})
-
-class Copy(TimeStampModel):
-    text = models.TextField(max_length=1000, null=False, blank=False)
+    logo_footer = models.ImageField(upload_to='logo_footer', null=False, blank=False)
+    logo_footer_img = ImageSpecField(source='logo_footer',
+                                     processors=[Thumbnail(320, 80)],
+                                     options={'quality': 100})
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+    twitter = models.CharField(max_length=255, null=True, blank=True)
+    linkedin = models.CharField(max_length=255, null=True, blank=True)
+    google = models.CharField(max_length=255, null=True, blank=True)
+    pintrest = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField(max_length=255, null=True, blank=True)
+    copy_text = models.TextField(max_length=1000, null=False, blank=False)
+    footer_phone = models.CharField(max_length=50, null=False, blank=False)
+    footer_phone_timing = models.CharField(max_length=50, null=False, blank=False)
+    footer_address = models.CharField(max_length=255, null=False, blank=False)
+    footer_text = models.TextField(null=False, blank=False)
 
 
 class Team(TimeStampModel):
@@ -52,23 +68,6 @@ class Team(TimeStampModel):
     twitter = models.CharField(max_length=255, null=False, blank=False)
     linkedin = models.CharField(max_length=255, null=False, blank=False)
     team_profile = models.ImageField(upload_to='team_profile', null=False, blank=False)
-
-
-class Footer(TimeStampModel):
-    phone = models.CharField(max_length=50, null=False, blank=False)
-    phone_timing = models.CharField(max_length=50, null=False, blank=False)
-    address = models.CharField(max_length=255, null=False, blank=False)
-    text = models.TextField(null=False, blank=False)
-
-
-class Header(TimeStampModel):
-    facebook = models.CharField(max_length=255, null=False, blank=False)
-    twitter = models.CharField(max_length=255, null=False, blank=False)
-    linkedin = models.CharField(max_length=255, null=False, blank=False)
-    google = models.CharField(max_length=255, null=False, blank=False)
-    pintrest = models.CharField(max_length=255, null=False, blank=False)
-    phone = models.CharField(max_length=255, null=False, blank=False)
-    email = models.EmailField(max_length=255, null=False, blank=False)
 
 
 class Slider(TimeStampModel):
@@ -88,6 +87,10 @@ class Testimony(TimeStampModel):
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField(null=False, blank=False)
     testimony_profile_image = models.ImageField(upload_to='testimony_profile_image', null=False, blank=False)
+    testimony_img = ImageSpecField(source='testimony_profile_image',
+                              processors=[Thumbnail(80, 80)],
+                              options={'quality': 100})
+    first = models.BooleanField(default=False)
 
 
 class Merchant(TimeStampModel):

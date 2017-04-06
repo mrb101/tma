@@ -1,6 +1,8 @@
-from .models import Branding
+from .models import Base
 
 
 def logo(request):
-    logo = Branding.objects.latest('updated')
-    return {'logo': logo}
+    if Base.objects.all().exists():
+        base = Base.objects.latest('updated')
+        return {'base': base}
+    return {}
