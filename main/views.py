@@ -3,10 +3,26 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
+from .models import MainBody, Clients, Testimony
+
 
 def home(request):
     template = 'main/home.html'
-    context = {}
+    body = ''
+    clients = ''
+    testimonies = ''
+    if MainBody.objects.all().exists():
+        body = MainBody.objects.latest('updated')
+    if Clients.objects.all().exists():
+        clients = Clients.objects.all()
+    if Testimony.objects.all().exists():
+        testimonies = Testimony.objects.all()
+        count = Testimony.objects.count()
+    context = {
+        'body': body,
+        'clients': clients,
+        'testimonies': testimonies,
+    }
     return render(request, template, context)
 
 

@@ -63,7 +63,8 @@
                 <img class="img-responsive" src="{% static 'img/img-featured-1.png' %}" alt="">
             </div>
             <div class="featured-content">
-                <h1>Increase Sales with Easy Payment Processing</h1>
+                <h1>{{ body.title}}</h1>
+                <p>{{ body.text }}</p>
                 <a href="" class="btn btn-default btn-lg">Learn More</a>
             </div>
             </div>
@@ -78,58 +79,30 @@
         <div id="testimonialSlider" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#testimonialSlider" data-slide-to="0" class="active"></li>
-                <li data-target="#testimonialSlider" data-slide-to="1"></li>
-                <li data-target="#testimonialSlider" data-slide-to="2"></li>
+                {% for test in testimonies %}
+                <li data-target="#testimonialSlider" data-slide-to="{{ forloop.counter0 }}" class="{% if test.first %}active{% endif %}"></li>
+                {% endfor %}
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
+
+                {% for testimony in testimonies %}
+                <div class="item {% if testimony.first %}active{% endif %}">
                     <blockquote>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus
-                            pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit
-                            consequat eget augue vitae aliquet sollicitudin.
-                        </p>
+                        <p>{{ testimony.text }}</p>
 
                         <ul class="user-details">
-                            <li class="avatar"><img src="{% static 'img/img-testimonial-1.jpg' %}" class="img-responsive" alt=""/></li>
-                            <li class="name">Justus Kühn</li>
-                            <li class="company">uiCookies</li>
+                            <li class="avatar"><img src="{{ testimony.testimony_img.url}}" class="img-responsive" alt=""/></li>
+                            <li class="name">{{ testimony.name }}</li>
+                            <li class="company">{{ testimony.title }}</li>
                         </ul>
 
                     </blockquote>
                 </div>
-                <div class="item">
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus
-                            pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit
-                            consequat eget augue vitae aliquet sollicitudin.
-                        </p>
-                         <ul class="user-details">
-                             <li class="avatar"><img src="{% static 'img/img-testimonial-2.jpg' %}" class="img-responsive" alt=""/></li>
-                            <li class="name">Lennox Arnold</li>
-                            <li class="company">uiCookies</li>
-                        </ul>
+                {% endfor %}
 
-                    </blockquote>
-                </div>
-                <div class="item">
-                    <blockquote>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus
-                            pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit
-                            consequat eget augue vitae aliquet sollicitudin.
-                        </p>
-                         <ul class="user-details">
-                             <li class="avatar"><img src="{% static 'img/img-testimonial-3.jpg' %}" class="img-responsive" alt=""/></li>
-                            <li class="name">Paulina Berger</li>
-                            <li class="company">uiCookies</li>
-                        </ul>
-
-                    </blockquote>
-                </div>
             </div>
         </div>
         <!-- #testimonialSlider -->
@@ -140,24 +113,11 @@
 <section class="client-logo ptb-100">
     <div class="container">
         <div class="row">
+            {% for client in clients %}
             <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-1.jpg' %}" alt="Image"></a>
+                <a href="{{ client.link }}"><img src="{{ client.client_img.url }}" alt="Image"></a>
             </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-2.jpg' %}" alt="Image"></a>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-3.jpg' %}" alt="Image"></a>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-4.jpg' %}" alt="Image"></a>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-5.jpg' %}" alt="Image"></a>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 section-margin">
-                <a href="#"><img src="{% static 'img/logo-client-6.jpg' %}" alt="Image"></a>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!--end of .container -->

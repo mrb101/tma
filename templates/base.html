@@ -47,19 +47,19 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <ul class="social-icon">
-                        <li><a href="" class="fa fa-facebook" aria-hidden="true"> </a></li>
-                        <li><a href="" class="fa fa-twitter" aria-hidden="true"> </a></li>
-                        <li><a href="" class="fa fa-pinterest-p" aria-hidden="true"> </a></li>
-                        <li><a href="" class="fa fa-google-plus" aria-hidden="true"> </a></li>
-                        <li><a href="" class="fa fa-linkedin" aria-hidden="true"> </a></li>
+                            <li><a href="{{ base.facebook }}" class="fa fa-facebook" aria-hidden="true"> </a></li>
+                            <li><a href="{{ base.twitter }}" class="fa fa-twitter" aria-hidden="true"> </a></li>
+                            <li><a href="{{ base.pinterest}}" class="fa fa-pinterest-p" aria-hidden="true"> </a></li>
+                            <li><a href="{{ base.google }}" class="fa fa-google-plus" aria-hidden="true"> </a></li>
+                            <li><a href="{{ base.linkedin }}" class="fa fa-linkedin" aria-hidden="true"> </a></li>
 
                         </ul>
                     </div>
 
                     <div class="col-sm-12 col-md-8">
                         <ul class="top-contact pull-right">
-                            <li class="phone"><i class="fa fa-phone-square" aria-hidden="true"></i> +60322973718</li>
-                            <li class="email"><i class="fa fa-envelope" aria-hidden="true"></i>contact@domain.com</li>
+                            <li class="phone"><i class="fa fa-phone-square" aria-hidden="true"></i>{{ base.phone }}</li>
+                            <li class="email"><i class="fa fa-envelope" aria-hidden="true"></i>{{ base.email }}</li>
                             <li class="get-a-quote"><a href="/signup" title="">Merchant Signup</a></li>
                         </ul>
                     </div>
@@ -78,7 +78,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="{{ logo.logo_img.url }}" alt="tma logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{ base.logo_img.url }}" alt="tma logo"></a>
                 </div>
 
 
@@ -110,21 +110,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="footer-logo">
-                                <a href="#"><img class="img-responsive" src="{% static 'img/logo-footer.png' %}" alt=""></a>
+                                <a href="#"><img class="img-responsive" src="{{ base.logo_footer_img.url }}" alt=""></a>
                             </div>
                         </div><!-- /.col-sm-4 -->
 
                         <div class="col-md-8">
                             <div class="footer-text">
-                              <p>Assertively architect synergistic platforms vis-a-vis premium results. Synergistically facilitate high-payoff e-services rather than top-line sources. Collaboratively drive market positioning infomediaries without real-time e-commerce.</p>
+                                <p>{{ base.footer_text }}</p>
 
                               <ul>
-                                  <li class="phone"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> 1-677-124-44227
-                                  <small><i class="fa fa-clock-o" aria-hidden="true"></i> Mon - Sat 8.00 - 18.00h</small></li>
+                                  <li class="phone"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> {{ base.footer_phone }}
+                                      <small><i class="fa fa-clock-o" aria-hidden="true"></i> {{ base.footer_phone_timing }}</small></li>
                                   <li class="address">
                                   <address>
                                     <i class="fa fa-map-pin" aria-hidden="true"></i>
-                                    437 S Olive St, Los Angeles
+                                    {{ base.footer_address }}
                                   </address>
                                   </li>
                               </ul>
@@ -137,7 +137,7 @@
 
             <div class="copyright-section">
                 <div class="container clearfix">
-                     <span class="copytext">Copyright &copy; 2016 - 2017 | <a href="#">TMA</a>  The Merchant Affiliate Sdn Bhd. All Rights Reserved.<strong style="color:#4d6de3">themerchantaffiliate.com</strong></span>
+                    <span class="copytext">{{base.copy_text}}<strong style="color:#4d6de3">themerchantaffiliate.com</strong></span>
                     <ul class="list-inline pull-right">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">About</a></li>
