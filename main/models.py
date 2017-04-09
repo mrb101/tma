@@ -15,7 +15,7 @@ class TimeStampModel(models.Model):
         abstract = True
 
 
-class About(models.Model):
+class About(TimeStampModel):
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField()
 
