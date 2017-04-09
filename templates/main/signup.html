@@ -17,93 +17,89 @@
 <section class="contact-section">
 <div class="container">
 <div class="contact-form mt-50">
-<form action="">
+<form id="merchantForm" action="" method="POST">
+    {% csrf_token %}
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="nameTwo" class="sr-only">Company</label>
-                <input type="text" class="form-control" required="" id="nameTwo" placeholder="Company">
+                {{ form.company }}
             </div>
-
              <div class="form-group">
-                <label for="nameTwo" class="sr-only">Salutation</label>
-                <input type="text" class="form-control" required="" id="nameTwo" placeholder="Salutation">
+                 <label for="nameTwo" class="sr-only">Salutation</label>
+                {{ form.salutation }}
             </div>
-
             <div class="form-group">
                 <label for="nameTwo" class="sr-only">First Name</label>
-                <input type="text" class="form-control" required="" id="nameTwo" placeholder="First Name">
+                {{ form.f_name }}
             </div>
-
             <div class="form-group">
                 <label for="nameTwo" class="sr-only">Last Name</label>
-                <input type="text" class="form-control" required="" id="nameTwo" placeholder="Last Name">
+                {{ form.l_name }}
             </div>
-
-
             <div class="form-group">
                 <label for="emailTwo" class="sr-only">Email</label>
-                <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
+                {{ form.email }}
             </div>
-
             <div class="form-group">
                 <label for="emailTwo" class="sr-only">Mobile</label>
-                <input type="email" class="form-control" required="" id="emailTwo" placeholder="Mobile">
+                {{ form.mobile }}
             </div>
-
             <div class="form-group">
                 <label for="emailTwo" class="sr-only">Website</label>
-                <input type="email" class="form-control" required="" id="emailTwo" placeholder="website">
+                {{ form.website }}
             </div>
-
-
         </div> <!-- col-md-4 -->
 
         <div class="col-md-8">
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">Street</label>
-                <input type= "text" class="form-control" required="" id="" placeholder="Street">
+                {{ form.street }}
             </div>
-
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">State</label>
-                <input type="text" class="form-control" required="" placeholder="State">
+                {{ form.state}}
             </div>
-
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">Zip Code</label>
-                <input type="text" class="form-control" required="" placeholder="Zip Code">
+                {{ form.zip_code }}
             </div>
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">City</label>
-                <input type="text" class="form-control" required="" placeholder="City">
+                {{ form.city }}
             </div>
-
             <div class="form-group">
                 <label for="emailTwo" class="sr-only">Industry</label>
-                <input type="email" class="form-control" required="" id="emailTwo" placeholder="industry">
+                {{ form.industry }}
             </div>
-
             <div class="form-group">
-                <label for="messageTwo" class="sr-only">Discreption</label>
-                <input type="text" class="form-control" required="" placeholder="Write message">
+                <label for="messageTwo" class="sr-only">Monthly Salary</label>
+                {{ form.salay }}
             </div>
-
+            <div class="form-group">
+                <label for="messageTwo" class="sr-only">Description</label>
+                {{ form.description }}
+            </div>
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">Bank Reference</label>
-                <textarea class="form-control" required="" rows="7" placeholder="Write message"></textarea>
+                {{ form.bank }}
             </div>
-
             <div class="form-group">
                 <label for="messageTwo" class="sr-only">Lead Source</label>
-                <textarea class="form-control" required="" rows="7" placeholder="Write message"></textarea>
+                {{ form.lead_source }}
+            </div>
+            <div class="form-group">
+                <label for="messageTwo" class="sr-only">Method of Contact</label>
+                {{ form.contact_method }}
             </div>
         </div> <!-- col-md-8 -->
     </div><!-- /.row-->
-
-    <button type="submit" class="btn btn-primary btn-lg pull-right">Send Message</button>
+    <button type="submit" class="btn btn-primary btn-lg pull-right">Signup</button>
 </form>
 </div>
 </div>
 </section>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock %}
