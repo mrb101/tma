@@ -26,10 +26,18 @@ $(document).on('submit', '#merchantForm', (e) => {
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         },
         success: (res) => {
-
+            $('#merchantForm')[0].reset();
+            const div = document.createElement('DIV');
+            div.setAttribute("class", "alert alert-success");
+            div.setAttribute("role", "alert");
+            div.innerHTML = "Thanks! Your information has been submitted.";
+            const msgDiv = document.getElementById('msg');
+            msgDiv.appendChild(div);
+            $('html,body').scrollTop(0);
+            console.log(div);
         },
         error:(res) => {
-
+            console.log('Error');
         },
     })
 })
