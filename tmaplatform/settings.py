@@ -139,5 +139,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 
 # Env Var
+API = os.environ.get('API')
 API_KEY = os.environ.get('API_KEY')
 API_SEC = os.environ.get('API_SEC')
