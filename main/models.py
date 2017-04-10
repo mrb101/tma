@@ -80,6 +80,9 @@ class MainBody(TimeStampModel):
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField(null=True, blank=True)
     main_body_image = models.ImageField(upload_to='main_body_image', null=False, blank=False)
+    main_body_img = ImageSpecField(source='main_body_image',
+                                   processors=[Thumbnail(570, 457.14)],
+                                   options={'quality': 100})
 
 
 class Testimony(TimeStampModel):
