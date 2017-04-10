@@ -5,9 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 import json
-import urllib
-import urllib2
-import requests
 
 from .models import (
     MainBody,
@@ -20,8 +17,7 @@ from .models import (
 
 from .forms import MerchantForm
 
-from tmaplatform.settings import API, API_KEY, API_SEC
-
+from .utils import send_sms_notification, send_email_notification
 
 def home(request):
     template = 'main/home.html'
@@ -95,47 +91,14 @@ def m_signup(request):
         merchant.lead_source = request.POST.get('lead_source')
         merchant.contact_method = request.POST.get('contact_method')
         merchant.save()
-        params = {
-            'api_key': str(API_KEY),
-            'api_secret': str(API_SEC),
-            'from': '00601137480800',
-            'to': request.POST.get('mobile'),
-            'text': "Your Information has been submitted. Thank you! - TMA"
-        }
-        params2 = {
-            'api_key': str(API_KEY),
-            'api_secret': str(API_SEC),
-            'from': '00601137480800',
-            'to': '0060163225617',
-            'text': 'New Merchant has registed!',
-        }
-        url = 'https://rest.nexmo.com/sms/json?' + urllib.urlencode(params)
-        url2 = 'https://rest.nexmo.com/sms/json?' + urllib.urlencode(params2)
-        req = urllib2.Request(url)
-        req2 = urllib2.Request(url2)
-        req.add_header('Accept', 'application/json')
-        req2.add_header('Accept', 'application/json')
-        res = urllib2.urlopen(req)
-        res2 = urllib2.urlopen(req2)
-        if res.code == 200:
-            data = res.read()
-            decoded_res = json.loads(data.decode('utf-8'))
-            messages = decoded_res["messages"]
-            for message in messages:
-                if message["status"] == "0":
-                    print("Success")
-                else:
-                    print("Error{0}".format(res.code))
-        if res2.code == 200:
-            data = res2.read()
-            decoded_res2 = json.loads(data.decode('utf-8'))
-            messages2 = decoded_res2["messages"]
-            for message2 in messages2:
-                if message2["status"] == "0":
-                    print("Success")
-                else:
-                    print("Error{0}".format(res.code))
-        send_email_notification(request.POST.get('email'))
+        # send sms to merchant
+        send_sms_notification(request.POST.get('mobile'), "You information has been submitted, Thank you - TMA")
+        # send sms to us
+        send_sms_notification("+601137480800", "New Merchant has signed up")
+        # send email to merchant
+        send_email_notification(request.POST.get('email'), "your information has been submitted, Thank you, TMA")
+        # send email to us
+        send_email_notification("sales@themerchantaffiliate.com", "New merchant registered")
         return HttpResponse(json.dumps({
             'type': 'S01',
             'msg': 'Success!'
@@ -145,17 +108,3 @@ def m_signup(request):
             'type': 'S02',
             'msg': 'Error!'
         }))
-
-def send_email_notification(email):
-    URL = "https://api.mailgun.net/v3/sandboxedba71b9ee904dc5aab7a79a7492098b.mailgun.org/messages"
-    params = {
-        "from": "TMA <postmaster@sandboxedba71b9ee904dc5aab7a79a7492098b.mailgun.org>",
-        "to": [str(email),],
-        "subject": "TMA Confirmation",
-        "text": "This is an email to confirm your registration to TMA"
-    }
-    return requests.post(
-        URL,
-        auth=("api", str(API)),
-        data=params
-    )
