@@ -8,6 +8,7 @@ from imagekit.processors import Thumbnail
 
 
 class TimeStampModel(models.Model):
+    """ Abstract Model for Timestamp """
     created = models.DateTimeField(auto_now=True, auto_now_add=False)
     updated = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -16,6 +17,7 @@ class TimeStampModel(models.Model):
 
 
 class About(TimeStampModel):
+    """ Model that contains the about page information """
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField()
 
@@ -25,12 +27,14 @@ class Contact(TimeStampModel):
 
 
 class Services(TimeStampModel):
+    """ Model that contains the Services page information """
     title = models.CharField(max_length=255, null=False, blank=False)
     Description = models.TextField()
     desc_image = models.ImageField(upload_to='services', null=False, blank=False)
 
 
 class Clients(TimeStampModel):
+    """ Model that contains TMA clients logos and website link """
     link = models.CharField(max_length=255, null=False, blank=False)
     client_logo = models.ImageField(upload_to='clients', null=False, blank=False)
     client_img = ImageSpecField(source='client_logo',
@@ -39,6 +43,7 @@ class Clients(TimeStampModel):
 
 
 class Base(TimeStampModel):
+    """ Model that contains main template information """
     logo = models.ImageField(upload_to='logo', null=False, blank=False)
     logo_img = ImageSpecField(source='logo',
                               processors=[Thumbnail(400, 40)],
@@ -62,6 +67,7 @@ class Base(TimeStampModel):
 
 
 class Team(TimeStampModel):
+    """ Model that contains the team information for about page """
     name = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField()
     facebook = models.CharField(max_length=255, null=False, blank=False)
@@ -71,12 +77,14 @@ class Team(TimeStampModel):
 
 
 class Slider(TimeStampModel):
+    """ Model that contains the home page slider images and text """
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.CharField(max_length=255, null=False, blank=False)
     slider_image = models.ImageField(upload_to='slider', null=False, blank=False)
 
 
 class MainBody(TimeStampModel):
+    """ Model that contains the home page body image and text """
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField(null=True, blank=True)
     main_body_image = models.ImageField(upload_to='main_body_image', null=False, blank=False)
@@ -86,6 +94,7 @@ class MainBody(TimeStampModel):
 
 
 class Testimony(TimeStampModel):
+    """ Model that contains the home page testimonies for marketing and reference """
     name = models.CharField(max_length=255, null=False, blank=False)
     title = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField(null=False, blank=False)
@@ -97,6 +106,7 @@ class Testimony(TimeStampModel):
 
 
 class Merchant(TimeStampModel):
+    """ Model that contain the information for merchants who wants to signup"""
     NONE = 'NONE'
     MR = 'MR'
     MRS = 'MRS'
