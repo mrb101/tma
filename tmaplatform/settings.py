@@ -136,3 +136,8 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
+
+# Env Var
+API_KEY = os.environ.get('API_KEY')
+API_SEC = os.environ.get('API_SEC')

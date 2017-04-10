@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 import json
+import urllib
+import urllib2
 
 from .models import (
     MainBody,
@@ -16,6 +18,9 @@ from .models import (
 )
 
 from .forms import MerchantForm
+
+from tmaplatform.settings import API_KEY, API_SEC
+
 
 def home(request):
     template = 'main/home.html'
@@ -89,6 +94,26 @@ def m_signup(request):
         merchant.lead_source = request.POST.get('lead_source')
         merchant.contact_method = request.POST.get('contact_method')
         merchant.save()
+        params = {
+            'api_key': str(API_KEY),
+            'api_secret': str(API_SEC),
+            'from': '00601137480800',
+            'to': request.POST.get('mobile'),
+            'text': "Your Information has been submitted. Thank you! - TMA"
+        }
+        url = 'https://rest.nexmo.com/sms/json?' + urllib.urlencode(params)
+        req = urllib2.Request(url)
+        req.add_header('Accept', 'application/json')
+        res = urllib2.urlopen(req)
+        if res.code == 200:
+            data = res.read()
+            decoded_res = json.loads(data.decode('utf-8'))
+            messages = decoded_res["messages"]
+            for message in messages:
+                if message["status"] == "0":
+                    print("Success")
+                else:
+                    print("Error{0}".format(res.code))
         return HttpResponse(json.dumps({
             'type': 'S01',
             'msg': 'Success!'
