@@ -33,7 +33,7 @@ def send_email_notification(email, text):
     URL = "https://api.mailgun.net/v3/sandboxedba71b9ee904dc5aab7a79a7492098b.mailgun.org/messages"
     params = {
         "from": "TMA <postmaster@sandboxedba71b9ee904dc5aab7a79a7492098b.mailgun.org>",
-        "to": [str(email),],
+        "to": [email,],
         "subject": "TMA Confirmation",
         "text": text
     }
