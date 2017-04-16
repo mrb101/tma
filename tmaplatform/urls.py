@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^contact/', main_views.contact, name='contact'),
     url(r'^signup/', main_views.signup, name='signup'),
     url(r'^m_signup/', main_views.m_signup, name='m_signup'),
+    url(r'^inquiry/', main_views.inquiry, name='inquiry'),
     url(r'^$', main_views.home, name='home'),
 ]
 
