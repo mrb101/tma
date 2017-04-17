@@ -24,8 +24,8 @@
                         <div class="promo-content">
                           <h3>Office Address</h3>
                           <address>
-                            Hoffman Parkway <br> 
-                            Mountain View. USA
+                              {{ contact.street }}<br>
+                              {{ contact.city }}. {{ contact.country}}
                           </address>
                         </div>
                       </div><!-- /.promo-block-wrapper -->
@@ -39,8 +39,8 @@
                         <div class="promo-content">
                           <h3>Phone Number</h3>
                           <address>
-                            <abbr title="Phone">Land:</abbr> 1-900-123-hello<br>
-                            <abbr title="Phone">Cell:</abbr> 1-900-123-hello
+                              <abbr title="Phone">Land:</abbr> {{ contact.land_line }}<br>
+                              <abbr title="Phone">Cell:</abbr> {{ contact.mobile }}
                           </address>
                         </div>
                       </div><!-- /.promo-block-wrapper -->
@@ -54,8 +54,8 @@
                         <div class="promo-content">
                           <h3>Email Address</h3>
                           <address>
-                            <a href="mailto:#">contactt@uiCookies.com</a><br>
-                            <a href="#">www.uiCookies.com</a>
+                              <a href="mailto:#">{{ contact.email }}</a><br>
+                              <a href="#">{{ contact.website }}</a>
                           </address>
                         </div>
                       </div><!-- /.promo-block-wrapper -->
@@ -74,37 +74,47 @@
                   </div>
 
                   <div class="contact-form mt-50">
-                    <form action="">
+                    <form action="" id="inquiry" method="POST">
+                        {% csrf_token %}
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="nameTwo" class="sr-only">Name</label>
-                            <input type="text" class="form-control" required="" id="nameTwo" placeholder="First Name">
+                            {{ form.name }}
                           </div>
-                          
+
                           <div class="form-group">
-                            <label for="emailTwo" class="sr-only">Email</label>
-                            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
+                            <label for="nameTwo" class="sr-only">Phone</label>
+                            {{ form.phone }}
                           </div>
 
                           <div class="form-group">
                             <label for="emailTwo" class="sr-only">Email</label>
-                            <input type="email" class="form-control" required="" id="emailTwo" placeholder="Email Address">
+                            {{ form.email }}
+                          </div>
+
+                          <div class="form-group">
+                            <label for="emailTwo" class="sr-only">Email</label>
+                            <input type="email" class="form-control" required="" id="emailCheck" placeholder="Re-Enter Email Address">
                           </div>
                         </div> <!-- col-md-4 -->
 
                         <div class="col-md-8">
                           <div class="form-group">
                             <label for="messageTwo" class="sr-only">Message</label>
-                            <textarea class="form-control" required="" rows="7" placeholder="Write message"></textarea>
+                            {{ form.message }}
                           </div>
                         </div> <!-- col-md-8 -->
                       </div><!-- /.row-->
 
                       <button type="submit" class="btn btn-primary btn-lg pull-right">Send Message</button>
                     </form>
-                  </div> <!-- contact-form -->           
+                  </div> <!-- contact-form -->
                 </div>
               </section> <!-- contact-section -->
 
+{% endblock %}
+
+{% block js %}
+<script src='{% static 'js/app.js' %}'></script>
 {% endblock %}

@@ -2,7 +2,45 @@ from django import forms
 from django.forms import ModelForm
 from django.forms.widgets import TextInput, Select, EmailInput, NumberInput, Textarea
 
-from .models import Merchant
+from .models import Merchant, Inquiry
+
+
+class InquiryForm(ModelForm):
+    class Meta:
+        model = Inquiry
+        fields = [
+            'name',
+            'phone',
+            'email',
+            'message',
+        ]
+        widgets = {
+            'name': TextInput(
+                attrs= {
+                    'class': 'form-control',
+                    'placeholder': 'Name',
+                }
+            ),
+            'phone': TextInput(
+                attrs = {
+                    'class': 'form-control',
+                    'placeholder': 'Phone',
+                }
+            ),
+            'email': EmailInput(
+                attrs = {
+                    'class': 'form-control',
+                    'placeholder': 'Email',
+                }
+            ),
+            'message': Textarea(
+                attrs = {
+                    'class': 'form-control',
+                    'placeholder': 'Message',
+                }
+            )
+        }
+
 
 
 class MerchantForm(ModelForm):
@@ -104,7 +142,7 @@ class MerchantForm(ModelForm):
             'salay': NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Salary',
+                    'placeholder': 'Monthly Sales (MYR)',
                 }
             ),
             'description': Textarea(

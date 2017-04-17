@@ -13,11 +13,18 @@ from .models import (
     About,
     Team,
     Merchant,
+    Contact,
+    Inquiry,
 )
 
-from .forms import MerchantForm
+from .forms import MerchantForm, InquiryForm
 
 from .utils import send_sms_notification, send_email_notification
+from .tasks import (
+    task_new_merchant_sms_notification,
+    task_email_notification,
+)
+
 
 def home(request):
     template = 'main/home.html'
@@ -53,8 +60,75 @@ def about(request):
 
 def contact(request):
     template = 'main/contact.html'
-    context = {}
+    contact = ''
+    form = InquiryForm
+    if Contact.objects.all().exists():
+        contact = Contact.objects.latest('updated')
+    context = {
+        'contact': contact,
+        'form': form
+    }
     return render(request, template, context)
+
+
+def inquiry(request):
+    """
+    Process POST Ajax Form,
+    js_file_ref: Inquiry form POST
+    - Adds an inquiry to database
+    - sends an email with the inquiry message and details to sales@themerchantaffiliate.com
+    """
+    # If request is POST
+    if request.method == 'POST':
+
+        # Assign the recieved form field to variables
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # Assign the email address for email to be sent to
+        us = "sales@themerchantaffiliate.com"
+        # Assign the body text of the email
+        msg_text = "Sender: {0} \n Phone: {1} \n Email: {2} \n Message: {3}".format(name, phone, email, message)
+
+        # create a model Object to save to database
+        inquiry = Inquiry()
+        # Assign the form fields to the database model
+        inquiry.name = name
+        inquiry.phone = phone
+        inquiry.email = email
+        inquiry.message = message
+
+        # save the model to the database
+        inquiry.save()
+
+        # add task send inquiery information
+        task_email_notification.delay(us, msg_text)
+
+        # create response object
+        success_response_text = {}
+        error_response_text = {}
+        # assign successful response object
+        success_response_text['type'] = 'S01'
+        success_response_text['msg'] = 'Message has been sent successfuly!'
+
+        # assign failed response object
+        error_response_text['type'] = 'E01'
+        error_response_text['msg'] = 'Something went wrong!'
+
+        # sends the response back to the browser
+        return HttpResponse(
+            json.dumps(success_response_text),
+            content_type = "application/json"
+        )
+
+    else:
+        # sends the response back too the browser
+        HttpResponse(
+            json.dumps(error_response_text),
+            content_type = "application/json"
+        )
 
 
 def services(request):
@@ -71,40 +145,89 @@ def signup(request):
 
 
 def m_signup(request):
+    """
+    process the Ajax form,
+    js_file_ref: Merchant Signup form request
+    - Adds a merchant to the database
+    - Sends email to sales@themerchantaffiliate.com notifiying of new signup
+    - sends an email to the user to confirm data submit (User email is from the form)
+    """
+    # check if the request is POST
     if request.method == 'POST':
+
+        # Assign form fields to variables
+        company = request.POST.get('company')
+        salutation = request.POST.get('salutation')
+        f_name = request.POST.get('f_name')
+        l_name = request.POST.get('l_name')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        website = request.POST.get('website')
+        street = request.POST.get('street')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip_code')
+        city = request.POST.get('city')
+        industry = request.POST.get('industry')
+        salay = request.POST.get('salay')
+        description = request.POST.get('description')
+        bank = request.POST.get('bank')
+        lead_source = request.POST.get('lead_source')
+        contact_method = request.POST.get('contact_method')
+
+        # Create an object
         merchant = Merchant()
-        merchant.company = request.POST.get('company')
-        merchant.salutation = request.POST.get('salutation')
-        merchant.f_name = request.POST.get('f_name')
-        merchant.l_name = request.POST.get('l_name')
-        merchant.email = request.POST.get('email')
-        merchant.mobile = request.POST.get('mobile')
-        merchant.website = request.POST.get('website')
-        merchant.street = request.POST.get('street')
-        merchant.state = request.POST.get('state')
-        merchant.zip_code = request.POST.get('zip_code')
-        merchant.city = request.POST.get('city')
-        merchant.industry = request.POST.get('industry')
-        merchant.salay = request.POST.get('salay')
-        merchant.description = request.POST.get('description')
-        merchant.bank = request.POST.get('bank')
-        merchant.lead_source = request.POST.get('lead_source')
-        merchant.contact_method = request.POST.get('contact_method')
+
+        # Assign the form fields to the object
+        merchant.company = company
+        merchant.salutation = salutation
+        merchant.f_name = f_name
+        merchant.l_name = l_name
+        merchant.email = email
+        merchant.mobile = mobile
+        merchant.website = website
+        merchant.street = street
+        merchant.state = state
+        merchant.zip_code = zip_code
+        merchant.city = city
+        merchant.industry = industry
+        merchant.salay = salay
+        merchant.description = description
+        merchant.bank = bank
+        merchant.lead_source = lead_source
+        merchant.contact_method = contact_method
+
+        # Save the Object
         merchant.save()
-        # send sms to merchant
-        send_sms_notification(request.POST.get('mobile'), "You information has been submitted, Thank you - TMA")
-        # send sms to us
-        send_sms_notification("+601137480800", "New Merchant has signed up")
-        # send email to merchant
-        send_email_notification(request.POST.get('email'), "your information has been submitted, Thank you, TMA")
-        # send email to us
-        send_email_notification("sales@themerchantaffiliate.com", "New merchant registered")
-        return HttpResponse(json.dumps({
-            'type': 'S01',
-            'msg': 'Success!'
-        }))
+
+
+        # add task send email to merchant
+        merchant_msg_text = "Your email has been submitted, Thank you! - TMA"
+        task_email_notification.delay(email, merchant_msg_text)
+
+        # add task send email to us
+        us = "sales@themerchantaffiliate.com"
+        us_msg_text = "New Merchant registered \n Company: {0}".format(company)
+        task_email_notification.delay(us, us_msg_text)
+
+        # create reponse object
+        success_response_text = {}
+        error_response_text = {}
+
+        # Successful Respnse text
+        success_response_text['type'] = "S01"
+        success_response_text['msg'] = "Your application has been submitted successfully!"
+
+        # failed response text
+        error_response_text['type'] = "E01"
+        error_response_text['msg'] = "Something went wrong!"
+
+        return HttpResponse(
+            json.dumps(success_response_text),
+            content_type = "application/json"
+        )
+
     else:
-        return HttpResponse(json.dumps({
-            'type': 'S02',
-            'msg': 'Error!'
-        }))
+        return HttpResponse(
+            json.dumps(error_response_text),
+            content_type = "application/json"
+        )

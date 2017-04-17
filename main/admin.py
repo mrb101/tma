@@ -13,6 +13,7 @@ from .models import (
     MainBody,
     Testimony,
     Merchant,
+    Inquiry,
 )
 
 
@@ -26,3 +27,4 @@ admin.site.register(Slider)
 admin.site.register(MainBody)
 admin.site.register(Testimony)
 admin.site.register(Merchant)
+admin.site.register(Inquiry)

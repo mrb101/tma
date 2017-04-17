@@ -22,8 +22,22 @@ class About(TimeStampModel):
     text = models.TextField()
 
 
+class Inquiry(TimeStampModel):
+    """ Model that contains the about page information """
+    name = models.CharField(max_length=255, null=False, blank=False)
+    phone = models.CharField(max_length=50, null=False, blank=False)
+    email = models.EmailField(max_length=255, null=False, blank=False)
+    message = models.TextField(null=False, blank=False)
+
+
 class Contact(TimeStampModel):
-    pass
+    street = models.CharField(max_length=255, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    land_line = models.CharField(max_length=50, null=True, blank=True)
+    mobile = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=255, null=True, blank=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
 
 
 class Services(TimeStampModel):

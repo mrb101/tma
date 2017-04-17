@@ -40,4 +40,38 @@ $(document).on('submit', '#merchantForm', (e) => {
             console.log('Error');
         },
     })
-})
+});
+
+
+// Inquiry form POST
+$(document).on('submit', '#inquiry', (e) => {
+    e.preventDefault();
+    const name = $('#id_name').val();
+    const phone = $('#id_phone').val();
+    const email = $('#id_email').val();
+    const email2 = $('#emailCheck').val();
+    const message = $('#id_message').val();
+    const csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
+
+    if (email==email2) {
+        $.ajax({
+            type: 'POST',
+            url: '/inquiry/',
+            data: {
+                name: name,
+                phone: phone,
+                email: email,
+                message: message,
+                csrfmiddlewaretoken: csrfmiddlewaretoken,
+            },
+            success: (res) => {
+                console.log('done');
+            },
+            error: (res) => {
+                console.log('Error');
+            }
+        });
+    } else {
+        console.log("email errr")
+    }
+});
