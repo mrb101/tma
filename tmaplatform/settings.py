@@ -138,6 +138,10 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 
+# To use Celery or Not
+CELERY_ACTIVE = False
+
+
 # Celery Settings
 BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'

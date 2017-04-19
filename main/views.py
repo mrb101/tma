@@ -19,11 +19,15 @@ from .models import (
 
 from .forms import MerchantForm, InquiryForm
 
-from .utils import send_sms_notification, send_email_notification
-from .tasks import (
-    task_new_merchant_sms_notification,
-    task_email_notification,
-)
+from tmaplatform.settings import CELERY_ACTIVE
+
+if CELERY_ACTIVE:
+    from .tasks import (
+        task_new_merchant_sms_notification,
+        task_email_notification,
+    )
+else:
+    from .utils import send_sms_notification, send_email_notification
 
 
 def home(request):
@@ -104,7 +108,8 @@ def inquiry(request):
         inquiry.save()
 
         # add task send inquiery information
-        task_email_notification.delay(us, msg_text)
+        #task_email_notification.delay(us, msg_text)  # with Celery
+        send_email_notification(us, msg_text)  # without Celery
 
         # create response object
         success_response_text = {}
@@ -202,12 +207,14 @@ def m_signup(request):
 
         # add task send email to merchant
         merchant_msg_text = "Your email has been submitted, Thank you! - TMA"
-        task_email_notification.delay(email, merchant_msg_text)
+        #task_email_notification.delay(email, merchant_msg_text)  # with Celery
+        send_email_notificatino(email, merchant_msg_text)  # without Celery
 
         # add task send email to us
         us = "sales@themerchantaffiliate.com"
         us_msg_text = "New Merchant registered \n Company: {0}".format(company)
-        task_email_notification.delay(us, us_msg_text)
+        #task_email_notification.delay(us, us_msg_text)  # with Celery
+        send_email_notificatino(us, us_msg_text) # without Celery
 
         # create reponse object
         success_response_text = {}
