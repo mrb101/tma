@@ -16,175 +16,22 @@
 <section class="section-content-left-icon">
     <div class="container">
         <div class="row">
+            {% for service in services %}
             <div class="col-md-4">
                 <div class="left-icon-wraper">
-                    <div class="icon">
-                        <i class="flaticon-tags"></i>
-                    </div>
-                    
                     <div class="content">
-                    <h2>SEO Experts</h2>
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                        <h2>{{ service.title }}</h2>
+                        <p>{{ service.Description }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="left-icon-wraper">
-                <div class="icon"><i class="flaticon-ranking"></i></div>
-                
-                <div class="content">
-                    <h2>Great Rankings</h2>
-                    <p>Distinctively cultivate granular action items with standards compliant metrics. Holisticly promote empowered.</p>
-                </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="left-icon-wraper">
-                <div class="icon"><i class="flaticon-monitoring"></i></div>
-
-                <div class="content">
-                     <h2>Brand Visibility</h2>
-                    <p>Assertively facilitate go forward web services whereas intuitive e-markets. Completely parallel task world.</p>
-                </div>
-                   
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="left-icon-wraper">
-                <div class="icon"><i class="flaticon-blogging"></i></div>
-
-                 <div class="content">
-                     <h2>Content Marketing</h2>
-                    <p>Efficiently monetize technically sound e-markets rather than interoperable e-services.</p>
-                 </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="left-icon-wraper">
-                <div class="icon"><i class="flaticon-social-media"></i></div>
-
-                 <div class="content">
-                     <h2>Social Media</h2>
-                    <p>Collaboratively seize best-of-breed manufactured products for inexpensive initiatives. Dynamically repurpose.</p>
-                 </div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="left-icon-wraper">
-                <div class="icon"><i class="flaticon-viral-marketing"></i></div>
-
-                <div class="content">
-                    <h2>Digital Marketing</h2>
-                    <p>Enthusiastically promote standards compliant relationships vis-a-vis backend resources.</p>
-                </div>
-                   
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!-- .container -->
 </section>
 <!-- /.services-left-icon -->
 
-
-
-<section class="gray-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 x-accordion">
-                <h3>How we work</h3>
-                <div class="panel-group" id="accordionSixLeft">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordionSixLeft" href="#collapseSixLeftone" aria-expanded="false" class="collapsed">
-                                    Seamlessly empower
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseSixLeftone" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs cond mentum leo massa mollis estiegittis miristum nulla.
-                            </div>
-                        </div>
-                    </div><!-- /.panel-default -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionSixLeft" href="#collapseSixLeftTwo" aria-expanded="false">
-                                    Initiatives.
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseSixLeftTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                            <div class="panel-body">
-                                Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs cond mentum leo massa mollis estiegittis miristum nulla.
-                            </div>
-                        </div>
-                    </div><!-- /.panel-default -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="" data-toggle="collapse" data-parent="#accordionSixLeft" href="#collapseSixLeftThree" aria-expanded="true">
-                                    Objectively maintain
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseSixLeftThree" class="panel-collapse collapse in" aria-expanded="true">
-                            <div class="panel-body">
-                                Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs cond mentum leo massa mollis estiegittis miristum nulla.
-                            </div>
-                        </div>
-                    </div><!-- /.panel-default -->
-                </div><!--end of /.panel-group-->
-            </div>
-            <!-- .x-aacordion-->
-
-            <div class="col-md-6 col-sm-12 tabOne">
-                <h3>Why choose our services</h3>
-                <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul id="tabOne" class="nav nav-tabs nav-justified">
-                        <li class="active"><a href="#contentOne-1" data-toggle="tab" aria-expanded="true">Strategic  Plan</a></li>
-                        <li class=""><a href="#contentOne-2" data-toggle="tab" aria-expanded="false">Annual Budget Plan</a></li>
-                        <li class=""><a href="#contentOne-3" data-toggle="tab" aria-expanded="false">Professional Details</a></li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="contentOne-1">
-                            <p>Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed fringilla Donec vitae orci dignissim, faucibus tellus volutpat, rhoncus leo.</p>
-
-                            <p>Mauris in quam tristique, dignissim urna in, molestie felis. Fusce tristique, elit nec vehicula imperdiet, eros est egestas odio, at aliquet elit nulla sed massa. Ut cursus massa at urnaaculis estie.</p>
-                        </div>
-                        <div class="tab-pane fade" id="contentOne-2">
-                            <p>Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed fringilla Donec vitae orci dignissim, faucibus tellus volutpat, rhoncus leo.</p>
-
-                            <p>Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed fringilla Donec vitae orci dignissim, faucibus tellus volutpat, rhoncus</p>
-
-                        </div>
-                        <div class="tab-pane fade" id="contentOne-3">
-                            <p>Ut cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed fringilla Donec vitae orci dignissim, faucibus tellus volutpat, rhoncus leo.</p>
-
-                            <p>Mauris in quam tristique, dignissim urna in, molestie felis. Fusce tristique, elit nec vehicula imperdiet, eros est egestas odio, at aliquet elit nulla sed massa. Ut cursus massa at urnaaculis estie.</p>
-                        </div>
-                    </div>
-
-                </div> <!--.tabpanel-->
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-    </div>
-
-
-</section>
 <!-- .about-text-->
 
 {% endblock %}

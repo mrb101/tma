@@ -9,6 +9,7 @@ import json
 from .models import (
     MainBody,
     Clients,
+    Services,
     Testimony,
     About,
     Team,
@@ -59,6 +60,15 @@ def about(request):
     if Team.objects.all().exists():
         teams = Team.objects.all()
     context = {'about': about, 'teams': teams}
+    return render(request, template, context)
+
+
+def services(request):
+    template = 'main/services.html'
+    services = ''
+    if Services.objects.all().exists():
+        services = Services.objects.all()
+    context = {'services': services}
     return render(request, template, context)
 
 
@@ -134,12 +144,6 @@ def inquiry(request):
             json.dumps(error_response_text),
             content_type = "application/json"
         )
-
-
-def services(request):
-    template = 'main/services.html'
-    context = {}
-    return render(request, template, context)
 
 
 def signup(request):
