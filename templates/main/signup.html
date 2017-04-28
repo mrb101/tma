@@ -1,106 +1,116 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load static %}
 {% block body %}
-<section class="single-page-title single-page-title-contact">
-    <div class="container">
+<!-- Header -->
+<div id="header-wrapper">
+    <header id="header" class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2>Merchant Signup</h2>
+            <div class="12u">
+
+                <!-- Logo -->
+
+                <img style=="padding-top:20px" width="180px" src="{% static 'img/tma_logo.png' %}" alt="" />
+                <!-- Nav -->
+                    <nav id="nav">
+                        <a href="/home">Homepage</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/signup">Merchant Signup</a>
+                    </nav>
+
             </div>
         </div>
-    </div>
-</section>
-<!-- .page-title -->
-<!-- .page-title -->
-
+    </header>
+</div>
 
 <section class="contact-section">
-<div class="container">
-<div class="contact-form mt-50">
-<div id="msg"></div>
-<form id="merchantForm" action="" method="POST">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="nameTwo" class="sr-only">Company</label>
-                {{ form.company }}
-            </div>
-             <div class="form-group">
-                 <label for="nameTwo" class="sr-only">Salutation</label>
-                {{ form.salutation }}
-            </div>
-            <div class="form-group">
-                <label for="nameTwo" class="sr-only">First Name</label>
-                {{ form.f_name }}
-            </div>
-            <div class="form-group">
-                <label for="nameTwo" class="sr-only">Last Name</label>
-                {{ form.l_name }}
-            </div>
-            <div class="form-group">
-                <label for="emailTwo" class="sr-only">Email</label>
-                {{ form.email }}
-            </div>
-            <div class="form-group">
-                <label for="emailTwo" class="sr-only">Mobile</label>
-                {{ form.mobile }}
-            </div>
-            <div class="form-group">
-                <label for="emailTwo" class="sr-only">Website</label>
-                {{ form.website }}
-            </div>
-        </div> <!-- col-md-4 -->
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>Please fill the form below</h2>
+        </div>
+    <div class="contact-form mt-50">
+        <form id="merchantForm" action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nameTwo" class="sr-only">Company</label>
+                        {{ form.company }}
+                    </div>
+                     <div class="form-group">
+                         <label for="nameTwo" class="sr-only">Salutation</label>
+                        {{ form.salutation }}
+                    </div>
+                    <div class="form-group">
+                        <label for="nameTwo" class="sr-only">First Name</label>
+                        {{ form.f_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="nameTwo" class="sr-only">Last Name</label>
+                        {{ form.l_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="emailTwo" class="sr-only">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="emailTwo" class="sr-only">Mobile</label>
+                        {{ form.mobile }}
+                    </div>
+                    <div class="form-group">
+                        <label for="emailTwo" class="sr-only">Website</label>
+                        {{ form.website }}
+                    </div>
+                </div> <!-- col-md-4 -->
 
-        <div class="col-md-8">
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Street</label>
-                {{ form.street }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">State</label>
-                {{ form.state}}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Zip Code</label>
-                {{ form.zip_code }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">City</label>
-                {{ form.city }}
-            </div>
-            <div class="form-group">
-                <label for="emailTwo" class="sr-only">Industry</label>
-                {{ form.industry }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Monthly Sales (MYR)</label>
-                {{ form.salay }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Description</label>
-                {{ form.description }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Bank Reference</label>
-                {{ form.bank }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Lead Source</label>
-                {{ form.lead_source }}
-            </div>
-            <div class="form-group">
-                <label for="messageTwo" class="sr-only">Method of Contact</label>
-                {{ form.contact_method }}
-            </div>
-        </div> <!-- col-md-8 -->
-    </div><!-- /.row-->
-    <button type="submit" class="btn btn-primary btn-lg pull-right">Signup</button>
-</form>
-</div>
-</div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Street</label>
+                        {{ form.street }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">State</label>
+                        {{ form.state}}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Zip Code</label>
+                        {{ form.zip_code }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">City</label>
+                        {{ form.city }}
+                    </div>
+                    <div class="form-group">
+                        <label for="emailTwo" class="sr-only">Industry</label>
+                        {{ form.industry }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Monthly Sales (MYR)</label>
+                        {{ form.salay }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Description</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Bank Reference</label>
+                        {{ form.bank }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Lead Source</label>
+                        {{ form.lead_source }}
+                    </div>
+                    <div class="form-group">
+                        <label for="messageTwo" class="sr-only">Method of Contact</label>
+                        {{ form.contact_method }}
+                    </div>
+                </div> <!-- col-md-8 -->
+            </div><!-- /.row-->
+            <button type="submit" class="btn btn-primary btn-lg pull-right">Submit</button>
+        </form>
+    </div>
 </section>
 {% endblock %}
+
 {% block js %}
-<script src="{% static 'js/app.js' %}"></script>
+<script src='{% static 'js/app.js' %}'></script>
 {% endblock %}

@@ -36,6 +36,8 @@ def home(request):
     body = ''
     clients = ''
     testimonies = ''
+    services = ''
+    about = ''
     if MainBody.objects.all().exists():
         body = MainBody.objects.latest('updated')
     if Clients.objects.all().exists():
@@ -43,10 +45,16 @@ def home(request):
     if Testimony.objects.all().exists():
         testimonies = Testimony.objects.all()
         count = Testimony.objects.count()
+    if Services.objects.all().exists():
+        services = Services.objects.all()
+    if About.objects.all().exists():
+        about = About.objects.latest('updated')
     context = {
         'body': body,
         'clients': clients,
         'testimonies': testimonies,
+        'services': services,
+        'about': about,
     }
     return render(request, template, context)
 

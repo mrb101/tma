@@ -14,6 +14,7 @@ Global Typography
 h1, h2, h3, h4, h5, h6 {
     margin      : 0 0 15px;
     color       : #303841;
+    
     }
 
 h1 {
@@ -272,7 +273,6 @@ Shortcode Content
     padding-top    : 0;
     padding-bottom : 0;
     height         : 40px;
-    width          : 400px;
     }
 
 .navbar-default .navbar-nav > li {
@@ -568,7 +568,7 @@ Shortcode Content
  *-------------------------*/
 
 .header-top{
-    background: #f96c04;
+    background: #4760bb;
  }
 
  /*Social Icon*/
@@ -610,7 +610,7 @@ Shortcode Content
 .header-top .top-contact li.get-a-quote a{
     padding: 0 30px;
     display: block;
-    background: #f49e3e;
+    background: #3ea8f4;
     color: #fff;
 }
 
@@ -1060,7 +1060,7 @@ Shortcode Content
     left:0;
     right: 0;
     bottom: 0;
-    background: rgba(249, 108, 4, 0.76);
+    background: rgba(77, 109, 227, 0.76);
     }
 
 .single-page-title h2 {
@@ -1460,6 +1460,7 @@ icon-style
 /* --------------------------------------------
  *   Footer
  *---------------------------------------------- */
+/*    
 .footer {
     background: #3a3a3a url("../img/img-testimonial-bg.png") repeat-x center bottom;
     }
@@ -1524,7 +1525,6 @@ icon-style
 }
 
 
-/* Copyright */
 
 .footer .copyright-section {
     font-size: 12px;
@@ -1549,9 +1549,6 @@ icon-style
 .footer .copyright-section li.active a {
     color : #ffffff;
     }
-
-/* media queries */
-
 @media (min-width : 768px) {
     .footer .copyright-section .list-inline > li {
         padding-right : 10px;
@@ -1579,12 +1576,11 @@ icon-style
     }
 
 
-    /*footer menu*/
     .footer .copyright-section .pull-right{
         float: none !important;
     }
 }
-
+*/
 /* ---------------------------------------------- /*
  * Preloader
 /* ---------------------------------------------- */
