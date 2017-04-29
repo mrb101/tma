@@ -39,7 +39,7 @@ def home(request):
     services = ''
     about = ''
     if MainBody.objects.all().exists():
-        body = MainBody.objects.latest('updated')
+        body = MainBody.objects.all()
     if Clients.objects.all().exists():
         clients = Clients.objects.all()
     if Testimony.objects.all().exists():

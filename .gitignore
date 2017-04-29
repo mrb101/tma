@@ -1,3 +1,6 @@
+.*.py.swp
+.*.css.swp
+.*.html.swp
 venv
 *.pyc
 staticfiles
