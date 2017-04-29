@@ -103,7 +103,7 @@ class MainBody(TimeStampModel):
     text = models.TextField(null=True, blank=True)
     main_body_image = models.ImageField(upload_to='main_body_image', null=False, blank=False)
     main_body_img = ImageSpecField(source='main_body_image',
-                                   processors=[Thumbnail(570, 457.14)],
+                                   processors=[Thumbnail(100, 100)],
                                    options={'quality': 100})
 
 
